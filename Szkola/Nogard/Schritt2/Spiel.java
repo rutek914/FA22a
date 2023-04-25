@@ -31,7 +31,7 @@ public class Spiel {
 		ausgebenStartText();
 	}
 
-	public void spielen() {
+	public void spielen() throws BefehlUnbekanntException {
 
 		// Befehle einlesen und auswerten.
 		Scanner scannerZeile = new Scanner(System.in);
@@ -42,37 +42,32 @@ public class Spiel {
 			// Befehlszeile lesen.
 			String input = scannerZeile.nextLine();
 			// Befehl interpretieren.
-			String[] befehl = input.trim().split(" ");
+			Befehl befehl = BefehlFactory.createBefehl(input);
 			end = ausfuehrenBefehl(befehl);
-			ausgebenEndText();
+
 		}
+		ausgebenEndText();
 	}
 
-	private boolean ausfuehrenBefehl(String[] befehl) {
-		boolean end;
+	private boolean ausfuehrenBefehl(Befehl befehl) {
+		boolean end = false;
 		// Abbruch bei fehlender Eingabe.
-		if (befehl.length == 0) {
+
+		// Auswerten des Befehls.
+		if (befehl.getBefehl().equals("go")) {
+			wechselBereich(befehl);
+			end = false;
+		} else if (befehl.getBefehl().equals("help")) {
+			ausgebenHilfeText();
+			end = false;
+		} else if (befehl.getBefehl().equals("quit")) {
+			end = true;
+		} else {
 			ausgebenFehlerBefehl();
 			end = false;
-		} else {
-			// Auswerten des Befehls.
-			String befehlWort = befehl[0].trim();
-			if (befehlWort.equalsIgnoreCase("go")) {
-				wechselBereich(befehl);
-
-				end = false;
-			} else if (befehlWort.equalsIgnoreCase("help")) {
-				ausgebenHilfeText();
-				end = false;
-			} else if (befehlWort.equalsIgnoreCase("quit")) {
-				end = true;
-			} else {
-				ausgebenFehlerBefehl();
-
-				end = false;
-			}
 		}
 		return end;
+
 	}
 
 	private void ausgebenHilfeText() {
@@ -85,7 +80,7 @@ public class Spiel {
 
 	private void ausgebenEndText() {
 		// Endbildschirm ausgeben.
-		System.out.println("Danke für dieses Spiel. Auf Wiedersehen.");
+		System.out.println("Danke fuer dieses Spiel. Auf Wiedersehen.");
 	}
 
 	private void ausgebenStartText() {
@@ -117,7 +112,7 @@ public class Spiel {
 	}
 
 	private void ausgebenFehlerBefehl() {
-		System.out.println("Ich weiß nicht, was Du meinst ...");
+		System.out.println("Ich weiss nicht, was Du meinst ...");
 	}
 
 	private void ausgebenBereichsInfo() {
@@ -130,37 +125,36 @@ public class Spiel {
 			System.out.println("\tOsten.");
 		}
 		if (aktiverBereich.getSued() != null) {
-			System.out.println("\tSüden.");
+			System.out.println("\tSueden.");
 		}
 		if (aktiverBereich.getWest() != null) {
 			System.out.println("\tWesten.");
 		}
 	}
 
-	private void wechselBereich(String[] befehl) {
-		if (befehl.length < 2) {
-			System.out.println("Wohin möchtest Du gehen?");
+	private void wechselBereich(Befehl befehl) {
+
+		System.out.println("Wohin moechtest Du gehen?");
+
+		String richtung = befehl.getBefehlszusatz();
+		Bereich neuerBereich;
+		if (richtung.equalsIgnoreCase("Norden")) {
+			neuerBereich = aktiverBereich.getNord();
+		} else if (richtung.equalsIgnoreCase("Osten")) {
+			neuerBereich = aktiverBereich.getOst();
+		} else if (richtung.equalsIgnoreCase("Sueden")) {
+			neuerBereich = aktiverBereich.getSued();
+		} else if (richtung.equalsIgnoreCase("Westen")) {
+			neuerBereich = aktiverBereich.getWest();
 		} else {
-			String richtung = befehl[1].trim();
-			Bereich neuerBereich;
-			if (richtung.equalsIgnoreCase("Norden")) {
-				neuerBereich = aktiverBereich.getNord();
-			} else if (richtung.equalsIgnoreCase("Osten")) {
-				neuerBereich = aktiverBereich.getOst();
-			} else if (richtung.equalsIgnoreCase("Süden")) {
-				neuerBereich = aktiverBereich.getSued();
-			} else if (richtung.equalsIgnoreCase("Westen")) {
-				neuerBereich = aktiverBereich.getWest();
-			} else {
-				neuerBereich = null;
-			}
-			// Auswertung der gefundenen Bereichs.
-			if (neuerBereich == null) {
-				System.out.println("Dort geht es nicht weiter.");
-			} else {
-				aktiverBereich = neuerBereich;
-				ausgebenBereichsInfo();
-			}
+			neuerBereich = null;
+		}
+		// Auswertung der gefundenen Bereichs.
+		if (neuerBereich == null) {
+			System.out.println("Dort geht es nicht weiter.");
+		} else {
+			aktiverBereich = neuerBereich;
+			ausgebenBereichsInfo();
 		}
 
 	}
