@@ -1,4 +1,4 @@
-package Szkola.Nogard.Schritt3;
+package Szkola.Nogard.Schritt4;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,10 +26,9 @@ public class Bereich {
     public Bereich(String beschreibung) {
         this.beschreibung = beschreibung;
         nachbarn = new HashMap<>();
-        nachbarn.put(Richtungen.NORTH, null);
-        nachbarn.put(Richtungen.SOUTH, null);
-        nachbarn.put(Richtungen.WEST, null);
-        nachbarn.put(Richtungen.EAST, null);
+        for (Richtungen richtung : Richtungen.values()) {
+            nachbarn.put(richtung, null);
+        }
     }
 
     /**
@@ -51,11 +50,9 @@ public class Bereich {
      * @param sued Der im S�den benachbarte Bereich.
      * @param west Der im Westen benachbarte Bereich.
      */
-    public void setNachbarn(Bereich nordd, Bereich ost, Bereich sued, Bereich west) {
-        nachbarn.put(Richtungen.NORTH, nordd);
-        nachbarn.put(Richtungen.WEST, west);
-        nachbarn.put(Richtungen.SOUTH, sued);
-        nachbarn.put(Richtungen.EAST, ost);
+    public void setNachbar(Richtungen richtung, Bereich nachbar) {
+        nachbarn.put(richtung, nachbar);
+        // nachbarn.put(Richtungen.EAST, ost);
     }
 
     public Bereich getNachbar(Richtungen richtung) {

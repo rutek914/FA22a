@@ -1,4 +1,4 @@
-package Szkola.Nogard.Schritt3;
+package Szkola.Nogard.Schritt4;
 
 import java.util.Scanner;
 
@@ -99,13 +99,32 @@ public class Spiel {
 		Bereich taverne = new Bereich("in der Taverne, mit zwielichtigen Gestalten an der Theke");
 		Bereich hexenhaus = new Bereich("im finsteren Hexenhaus");
 		Bereich rathaus = new Bereich("im Rathaus von Nogard");
+		Bereich hoehle = new Bereich("in der Höhle unter dem Wald");
+		Bereich weinkeller = new Bereich("im Weinkeller unter der Taverne");
+		Bereich kräuterkeller = new Bereich("im Kräuterkeller unter dem Hexenhaus");
 
 		// Die Nachbarschaften festlegen.
-		friedhof.setNachbarn(null, null, hexenhaus, null);
-		wald.setNachbarn(hexenhaus, taverne, null, null);
-		taverne.setNachbarn(rathaus, null, null, wald);
-		hexenhaus.setNachbarn(friedhof, rathaus, wald, null);
-		rathaus.setNachbarn(null, null, taverne, hexenhaus);
+		friedhof.setNachbar(Richtungen.SOUTH, hexenhaus); // (null, null, hexenhaus, null);
+
+		wald.setNachbar(Richtungen.NORTH, hexenhaus);
+		wald.setNachbar(Richtungen.EAST, taverne);
+		wald.setNachbar(Richtungen.DOWN, hoehle); // (hexenhaus, taverne, null, null);
+
+		taverne.setNachbar(Richtungen.NORTH, rathaus);
+		taverne.setNachbar(Richtungen.WEST, wald);
+		taverne.setNachbar(Richtungen.DOWN, weinkeller); // (rathaus, null, null, wald); north east sud west
+
+		hexenhaus.setNachbar(Richtungen.NORTH, friedhof);
+		hexenhaus.setNachbar(Richtungen.EAST, rathaus);
+		hexenhaus.setNachbar(Richtungen.SOUTH, wald);
+		hexenhaus.setNachbar(Richtungen.DOWN, kräuterkeller); // (friedhof, rathaus, wald, null);
+
+		rathaus.setNachbar(Richtungen.SOUTH, taverne);
+		rathaus.setNachbar(Richtungen.WEST, hexenhaus);
+
+		hoehle.setNachbar(Richtungen.UP, wald);
+		kräuterkeller.setNachbar(Richtungen.UP, hexenhaus);
+		weinkeller.setNachbar(Richtungen.UP, taverne);
 
 		// Das Spielt startet im Wald.
 		aktiverBereich = wald;
@@ -119,25 +138,9 @@ public class Spiel {
 
 		System.out.println("Wohin moechtest Du gehen?");
 
-		String richtung = befehl.getBefehlszusatz();
-		Bereich neuerBereich;
-		switch (richtung) {
-			case "north":
-				neuerBereich = aktiverBereich.getNachbar(Richtungen.NORTH);
-				break;
-			case "south":
-				neuerBereich = aktiverBereich.getNachbar(Richtungen.SOUTH);
-				break;
-			case "west":
-				neuerBereich = aktiverBereich.getNachbar(Richtungen.WEST);
-				break;
-			case "east":
-				neuerBereich = aktiverBereich.getNachbar(Richtungen.EAST);
-				break;
-			default:
-				neuerBereich = null;
-				break;
-		}
+		Richtungen richtung = Richtungen.valueOf(befehl.getBefehlszusatz().toUpperCase());
+		Bereich neuerBereich = aktiverBereich.getNachbar(richtung);
+
 		// Auswertung der gefundenen Bereichs.
 		if (neuerBereich == null) {
 			System.out.println("Dort geht es nicht weiter.");

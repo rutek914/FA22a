@@ -1,7 +1,8 @@
-package Szkola.Nogard.Schritt3;
+package Szkola.Nogard.Schritt4;
 
 public class BefehlFactory {
-    private static final String[] RICHTUNGSLISTE = { "north", "west", "east", "south" };
+    // private static final String[] RICHTUNGSLISTE = { "north", "west", "east",
+    // "south" };
 
     public static Befehl createBefehl(String input) throws BefehlUnbekanntException {
         String[] befehl = input.trim().split(" ");
@@ -17,17 +18,12 @@ public class BefehlFactory {
             case "go":
                 if (befehl.length == 2) {
                     String richtungswort = befehl[1].toLowerCase();
-                    for (int i = 0; i < RICHTUNGSLISTE.length; ++i) {
-                        if (richtungswort.equals(RICHTUNGSLISTE[i])) {
-                            return new Befehl("go", richtungswort);
-                        } else if (i >= RICHTUNGSLISTE.length) {
-                            throw new BefehlUnbekanntException("wrong Richtung my dear");
+                    for (Richtungen r : Richtungen.values()) {
+                        if (r.name().equalsIgnoreCase(richtungswort)) {
+                            return new Befehl(befehlswort, richtungswort);
                         }
                     }
-                } else {
-                    throw new BefehlUnbekanntException("go where?????");
                 }
-
             default:
                 throw new BefehlUnbekanntException("I dont know what you mean brev");
         }
