@@ -1,13 +1,14 @@
 package Szkola.Persistierung.Basis;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Ware {
 
     private String bezeichnung, beschreibung;
     private double preis;
-    private List<String> besonderheiten;
-    private List<String> maengel;
+    private List<String> besonderheiten = new LinkedList<>();
+    private List<String> maengel = new LinkedList<>();
 
     public Ware(String bezeichnung, double preis) {
         this.bezeichnung = bezeichnung;

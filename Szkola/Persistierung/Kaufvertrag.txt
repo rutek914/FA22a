@@ -1,0 +1,14 @@
+Käufer: Vorname: Zinedine
+Nachname: Zidane
+Ausweisnummer: null
+Adresse: null
+Verkäufer: Vorname: Raul
+Nachname: Gonzalez
+Ausweisnummer: null
+Adresse: null
+Ware: Bezeichnung: Audi
+Beschreibung: R8, Baujahr: 2007
+Preis: 7500.0
+Besonderheiten: [Winterreifen inklusive, Panoramadach]
+Mängel: [Motorfehler wird angezeigt]
+Zahlungsmodalitäten: null
