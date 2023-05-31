@@ -1,0 +1,33 @@
+1. Dlaczego C++ ma więcej niż jeden typ danych całkowitych?
+
+
+2. Zadeklaruj zmienne pasujące do opisu:
+     a) Liczba całkowita typu short o wartości 80.
+     b) Liczba całkowita typu unsigned int o wartości 42 110.
+     c) Liczba całkowita o wartości 3 000 000 000.
+
+
+3. Jaka jest ochrona C++ przed przekroczeniem limitu typu całkowitego?
+
+
+4. Czym różnią się 33L i 33?
+
+
+5. Weźmy pod uwagę następujące dwie instrukcje:
+     char grade = 65;
+     char grafe = 'A';
+   Czy są one sobie równoważne?
+
+
+6. Jak można użyć C++ do sprawdzenia, który znak odpowiada kodowi 88? Podaj przynajmniej dwa różne sposoby.
+
+
+7. Przypisanie wartości long do zmiennej typu float może powodować błąd zaokrąglenia. A jak to wygląda w przypadku konwersji typu long na double? A dla konwersji long long na double?
+
+
+8.  Załóżmy, że x1 i x2 to dwie zmienne typu double,
+które chcemy dodać jako liczby całkowite i przypisać do zmiennej całkowitoliczbowej.
+Stwórz odpowiednią konstrukcję C++.
+A gdybyśmy chcieli dodać je jako liczby zmiennoprzecinkowe i dopiero wynik skonwertować na typ int?
+
+
