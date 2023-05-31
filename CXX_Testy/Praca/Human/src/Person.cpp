@@ -1,6 +1,6 @@
 // Copyright 2023 Piotr Rucinski
 
-#include "../CXX_Testy/Praca/Human/include/Person.h"
+#include "../include/Person.h"
 
 Person::Person(const string &name, short age, const string &email, int phoneNumber)
 :name(name), age(age), email(email), phoneNumber(phoneNumber) {}
