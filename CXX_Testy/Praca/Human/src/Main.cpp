@@ -8,6 +8,8 @@ using std::endl;
 using std::cout;
 using std::cin;
 using std::string;
+using std::vector;
+
 int main() {
 
     Person *azubi = new Person("Piotr", 28, "piotr@gmail.com", 0176111111);
@@ -19,12 +21,13 @@ int main() {
     leute.push_back(zidane);
     leute.push_back(hendrix);
 
-    for(auto it = leute.begin(); it! = people.end(); ++it) {
+    for (auto it = leute.begin(); it != leute.end(); ++it) {
         Person *person = *it;
         cout << "Name: " << person->getName() << endl;
         cout << "Alter: " << person->getAge() << endl;
         cout << "Email: " << person->getEmail() << endl;
         cout << "Tel.nr: " << person->getPhoneNumber() << endl;
+        cout << "\n";
     }
 
     delete azubi;

@@ -17,7 +17,7 @@ private:
 public:
    Person(const string &name, short age, // NOLINT
          const string &email, int phoneNumber);
-   ~Person();  // destructor
+   virtual ~Person();  // destructor
    // getters
    string getName() const;
    short getAge() const; // NOLINT
