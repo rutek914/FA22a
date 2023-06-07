@@ -1,0 +1,3 @@
+/mnt/c/Users/rutek/OneDrive/Dokumenty/vscode_git/FA22a/CXX_Testy/Praca/Workspace/Cmake/build/CMakeFiles/Executable.dir
+/mnt/c/Users/rutek/OneDrive/Dokumenty/vscode_git/FA22a/CXX_Testy/Praca/Workspace/Cmake/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/rutek/OneDrive/Dokumenty/vscode_git/FA22a/CXX_Testy/Praca/Workspace/Cmake/build/CMakeFiles/rebuild_cache.dir
