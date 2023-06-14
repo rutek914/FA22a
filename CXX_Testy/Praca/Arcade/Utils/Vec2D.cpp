@@ -13,15 +13,11 @@ bool Vec2D::operator!=(const Vec2D& vec2) const {
     return !(*this == vec2);
 }
 
-Vec2D Vec2d::operator-() const {
+Vec2D Vec2D::operator-() const {
     return Vec2D(-mX, -mY);
 }
 
 ostream& operator<<(ostream& consoleOut, const Vec2D& vec) {
     cout << "X: " <<vec.mX<< ", Y: "<<vec.mY<<endl;
     return consoleOut;
-}
-int main() {
-    Vec2D b;
-    cout << b<< endl;
 }
