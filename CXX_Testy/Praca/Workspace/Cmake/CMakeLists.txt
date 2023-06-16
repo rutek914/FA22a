@@ -8,24 +8,31 @@
 
 cmake_minimum_required(VERSION 3.22)
 
-project(ZadanieKsiazka1)
-#project(CppProjectTemplate VERSION 1.0.0 LANGUAGES C CXX)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+
+project(ZadanieKsiazka1 VERSION 1.0.0 LANGUAGES CXX)
+#project(CppProjectTemplate VERSION 1.0.0 LANGUAGES C CXX)
 set(TARGET_NAME Zadanie1)
 
 
 set(Header
-    include/gameplay/GameManager.h
-    include/ships/Submarine.h
+    code/gameplay/GameManager.h
+    code/ships/Submarine.h
 )
-
+# zarowno .h jak i .cpp w jednym folderze
+# np pliki od statku dajesz do ship engine.h engine.cpp
 set (Source
-    src/main.cpp
-    src/gameplay/GameManager.cpp
-    src/ships/Submarine.h
+    code/main.cpp
+    code/gameplay/GameManager.cpp
+    code/ships/Submarine.h
 )
 
-include_directories(include/gameplay include/ships)
+include_directories(
+    code/gameplay
+    code/ships)
 
 add_executable(${TARGET_NAME} ${Source} ${Header})
 
