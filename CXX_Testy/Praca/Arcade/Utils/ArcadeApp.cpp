@@ -13,5 +13,5 @@ int main() {
 
     cout << p << endl;
     cout << -(*pp) << endl;
-
+    cout << p * 3;
 }
